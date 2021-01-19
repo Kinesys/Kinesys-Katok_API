@@ -1,0 +1,32 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+ </head>
+ <body>
+     <a href = "javascript:kakaoLogin();"><img src = "https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png"</a>
+     <script src = "https://developers.kakao.com/sdk/js/kakao.js"></script>
+     <script>
+         //Kakao_API JavaScript
+         window.Kakao.init("Kakao_API js key");
+
+         function KakaoLogin() {
+             window.Kakao.Auth.login({
+                 scope : 'profile, account_emali, gender',
+                 success : function(authObj) {
+                     console.log(authObj);
+                     window.Kakao.API.request({
+                         url : '/v2/user/me',
+                         success : res => {
+                             const Kakao_account = res.Kakao_account;
+                             console.log(Kakao_account);
+                         }
+                     })
+                 }
+             })
+         }
+     </script>
+ </body>
+ </html>
